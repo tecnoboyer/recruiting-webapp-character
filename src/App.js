@@ -5,6 +5,28 @@ import { ATTRIBUTE_LIST, CLASS_LIST, SKILL_LIST } from './consts.js';
 import { useAttributeAdd } from './hooks/useAttributeAdd';
 import { useAttributeSubs } from './hooks/useAttributeSubs';
 
+import axios from 'axios';
+
+
+const url = 'https://recruiting.verylongdomaintotestwith.ca/api/{tecnoboyer}/character';
+const headers = {
+  'Content-Type': 'application/json'
+};
+
+
+const url_get = 'https://recruiting.verylongdomaintotestwith.ca/api/{tecnoboyer}/character';
+
+var fleched = axios.get(url_get)
+  .then(response => {
+    console.log('GET request successful:', response.data);
+  })
+  .catch(error => {
+    console.error('Error making GET request:', error);
+  });
+
+  console.log('printing what cames from git: '+fleched.body);
+
+
 function App() {
   useEffect(() => {}, []);
   
@@ -16,6 +38,10 @@ function App() {
   }
 ));
 
+
+
+
+
 const iniSkill = SKILL_LIST.map((skill) => ({
   ...skill,
   value: 0,
@@ -25,7 +51,7 @@ const iniSkill = SKILL_LIST.map((skill) => ({
 
 
   const highprop = { id: count , highAtt:inValueAtt};
-  var fleched= null; /// Here the get from the GIT repository
+  fleched= null; /// Here the get from the GIT repository
   var deplo = fleched || highprop;
   const [rol, setRol] = useState([deplo]);
 
@@ -37,7 +63,6 @@ const iniSkill = SKILL_LIST.map((skill) => ({
     };
 
     const IncrementAtt = (chartPart,objTotal) => {
-      console.log('hola'); 
       const modi=useAttributeAdd(rol,chartPart,objTotal);
         setRol(att => (modi));
     };
@@ -55,8 +80,27 @@ const iniSkill = SKILL_LIST.map((skill) => ({
     };
 
     const saveToDB = ()=>{
-      console.log('Saving down the DB');
+
+      const abc = (url,rol,headers) =>{
+         axios.post(url, rol, { headers })
+      .then(response => {
+        console.log('POST request successful:', response.data);
+      })
+      .catch(error => {
+        console.error('Error making POST request:', error);
+      });
+      }
+
+      abc(url,rol,headers);
+      return true
+
     }
+
+    
+
+
+
+
 
   return (
     <>
