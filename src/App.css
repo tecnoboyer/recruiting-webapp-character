@@ -14,6 +14,12 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+  :root {
+    color: #3094eb;
+    background-color: #0f0000;
+    margin:10px;
+  }
+  
 }
 
 .App-header {
@@ -43,4 +49,55 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr,1fr, 1fr;
+  gap: 1px;
+  margin:1px;
+  grid-auto-rows: minmax(100px, auto);
+  border: 1px solid rgb(231, 239, 164);
+  border-radius : 3px;
+  text-align: center;
+  
+}
+.head1 {
+  grid-column: 1/4 ;
+  grid-row: 1;
+  gap: 1px;
+  margin:2px;
+  padding:3px;
+  text-align: center;
+  border: 1px solid rgb(231, 239, 164);
+}
+.pre {
+  grid-column: 1/4 ;
+  grid-row: 2;
+  margin:1px;
+  border: 1px solid rgb(231, 239, 164);
+}
+.one {
+  grid-column: 1 ;
+  grid-row: 3;
+  margin:1px;
+  border: 1px solid rgb(231, 239, 164);
+}
+.two {
+  grid-column: 2 ;
+  grid-row: 3;
+  margin: 1px;
+  border: 1px solid white;
+}
+.three {
+  grid-column: 3 ;
+  grid-row: 3;
+  margin: 1px;
+  border: 1px solid white;
+}
+.four {
+  grid-column: 4 ;
+  grid-row: 3;
+  margin: 1px;
+  border: 1px solid white;
 }
