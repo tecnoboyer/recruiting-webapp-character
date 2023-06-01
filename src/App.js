@@ -14,21 +14,26 @@ const headers = {
 };
 
 
-const url_get = 'https://recruiting.verylongdomaintotestwith.ca/api/{tecnoboyer}/character';
-
-var fleched = axios.get(url_get)
-  .then(response => {
-    console.log('GET request successful:', response.data);
-  })
-  .catch(error => {
-    console.error('Error making GET request:', error);
-  });
-
-  console.log('printing what cames from git: '+fleched.body);
 
 
 function App() {
-  useEffect(() => {}, []);
+
+  const [characterData, setCharacterData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const url2 = 'https://recruiting.verylongdomaintotestwith.ca/api/{tecnoboyer}/character';
+        const response = await axios.get(url2);
+        setCharacterData(response.data);
+      } catch (error) {
+        console.error('Error fetching character data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   
   const [count, setCount] = useState(1);
   const inValueAtt =ATTRIBUTE_LIST.map((cat) => ({
@@ -51,9 +56,12 @@ const iniSkill = SKILL_LIST.map((skill) => ({
 
 
   const highprop = { id: count , highAtt:inValueAtt};
-  fleched= null; /// Here the get from the GIT repository
+  var fleched= null; /// Here the get from the GIT repository
   var deplo = fleched || highprop;
   const [rol, setRol] = useState([deplo]);
+
+
+  
 
   const addCharac=()=>{ 
     const newObject = {
